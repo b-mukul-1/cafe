@@ -28,27 +28,13 @@ export function AmbientParticles({ count = 120 }: AmbientParticlesProps) {
     return [pos, scl, spd];
   }, [count]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!pointsRef.current) return;
-    const geo = pointsRef.current.geometry;
-    const posAttr = geo.attributes.position;
-    if (!posAttr) return;
-
-    for (let i = 0; i < count; i++) {
-      let y = posAttr.getY(i) + speeds[i] * delta;
-      let x = posAttr.getX(i) + Math.sin(state.clock.elapsedTime * 0.5 + i) * 0.002;
-      let z = posAttr.getZ(i) + Math.cos(state.clock.elapsedTime * 0.4 + i) * 0.002;
-
-      // Wrap around ceiling
-      if (y > 3.8) {
-        y = -0.5;
-        x = (Math.random() - 0.5) * 6;
-        z = (Math.random() - 0.5) * 5;
-      }
-
-      posAttr.setXYZ(i, x, y, z);
-    }
-    posAttr.needsUpdate = true;
+    const t = state.clock.elapsedTime;
+    // Zero-overhead GPU transform animation (eliminates costly per-frame CPU buffer uploads on mobile)
+    pointsRef.current.rotation.y = t * 0.035;
+    pointsRef.current.rotation.x = Math.sin(t * 0.15) * 0.05;
+    pointsRef.current.position.y = Math.sin(t * 0.25) * 0.08;
   });
 
   return (

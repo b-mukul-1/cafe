@@ -101,7 +101,7 @@ export function SceneContent({ progress }: SceneContentProps) {
       targetCam.z *= 1.05;
     }
 
-    camera.position.lerp(targetCam, 0.12);
+    camera.position.lerp(targetCam, isMobile ? 0.24 : 0.12);
     camera.lookAt(targetLook);
 
     // Warm key light follows focal zone
@@ -120,13 +120,13 @@ export function SceneContent({ progress }: SceneContentProps) {
       {/* 2. Soft Ambient Lighting */}
       <ambientLight intensity={0.7} color="#FAF5EE" />
 
-      {/* 3. Golden Hour Key Light */}
+      {/* 3. Golden Hour Key Light (disable heavy dynamic shadow map on mobile) */}
       <directionalLight
         ref={dirLightRef}
         position={[4, 6, 4]}
         intensity={1.9}
         color="#FFEAD1"
-        castShadow
+        castShadow={!isMobile}
       />
 
       {/* 4. Warm Caramel Rim Light */}
@@ -135,18 +135,20 @@ export function SceneContent({ progress }: SceneContentProps) {
       {/* 5. Tracking Specular Highlight */}
       <pointLight ref={pointLightRef} intensity={0.9} distance={7} color="#B8975C" />
 
-      {/* 6. Realistic Tabletop Contact Shadows */}
+      {/* 6. Realistic Tabletop Contact Shadows (cached static bake on mobile to eliminate GPU blur passes) */}
       <ContactShadows
         position={[0, -0.42, 0]}
         opacity={0.65}
         scale={6}
-        blur={2.4}
+        blur={isMobile ? 1.5 : 2.4}
         far={2.0}
+        resolution={isMobile ? 256 : 512}
+        frames={isMobile ? 1 : Infinity}
         color="#0A0604"
       />
 
-      {/* 7. Ambient Golden Floating Bokeh Dust */}
-      <AmbientParticles count={90} />
+      {/* 7. Ambient Golden Floating Bokeh Dust (streamlined on mobile) */}
+      <AmbientParticles count={isMobile ? 35 : 90} />
 
       {/* 8. Handcrafted 3D Scene Components with Suspense Boundaries */}
       <Suspense fallback={null}>

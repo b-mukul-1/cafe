@@ -77,10 +77,10 @@ export function StoryCanvas({ progress, locale = "en" }: StoryCanvasProps) {
     };
   }, []);
 
-  // Compute mobile-capped DPR
+  // Compute mobile-capped DPR (1.2 on mobile saves ~36% fragment shader load vs 1.5, razor-sharp on high-DPI screens)
   const dpr = typeof window !== "undefined"
     ? window.innerWidth < 768
-      ? Math.min(window.devicePixelRatio, 1.5)
+      ? Math.min(window.devicePixelRatio, 1.2)
       : Math.min(window.devicePixelRatio, 2.0)
     : 1;
 

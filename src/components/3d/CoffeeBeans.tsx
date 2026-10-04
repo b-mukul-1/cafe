@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo } from "react";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 interface CoffeeBeansProps {
   progress: number;
@@ -11,11 +11,13 @@ interface CoffeeBeansProps {
 
 export function CoffeeBeans({ progress, active }: CoffeeBeansProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const beanCount = 36;
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const beanCount = isMobile ? 18 : 36;
 
   // 1. Parametric Arabica Coffee Bean Geometry with authentic longitudinal furrow
   const beanGeometry = useMemo(() => {
-    const geo = new THREE.SphereGeometry(1, 32, 24);
+    const geo = new THREE.SphereGeometry(1, isMobile ? 18 : 32, isMobile ? 14 : 24);
     const pos = geo.attributes.position;
 
     for (let i = 0; i < pos.count; i++) {
@@ -43,7 +45,7 @@ export function CoffeeBeans({ progress, active }: CoffeeBeansProps) {
 
     geo.computeVertexNormals();
     return geo;
-  }, []);
+  }, [isMobile]);
 
   // 2. Randomized organic bean transforms
   const beansData = useMemo(() => {

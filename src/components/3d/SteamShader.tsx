@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo } from "react";
 import * as THREE from "three";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 
 interface SteamShaderProps {
   position?: [number, number, number];
@@ -70,6 +70,8 @@ const SteamFragmentShader = `
 export function SteamShader({ position = [0, 0.6, 0], intensity = 1.0, scale = 1.0 }: SteamShaderProps) {
   const meshRef1 = useRef<THREE.Mesh>(null);
   const meshRef2 = useRef<THREE.Mesh>(null);
+  const { size } = useThree();
+  const isMobile = size.width < 768;
 
   // Load steam noise texture
   const noiseTexture = useLoader(THREE.TextureLoader, "/textures/steam-noise.png");
@@ -101,7 +103,7 @@ export function SteamShader({ position = [0, 0.6, 0], intensity = 1.0, scale = 1
     <group position={position} scale={scale}>
       {/* Primary steam plume */}
       <mesh ref={meshRef1} position={[0, 0.5, 0]}>
-        <cylinderGeometry args={[0.35, 0.15, 1.1, 24, 24, true]} />
+        <cylinderGeometry args={[0.35, 0.15, 1.1, isMobile ? 16 : 24, isMobile ? 14 : 24, true]} />
         <shaderMaterial
           vertexShader={SteamVertexShader}
           fragmentShader={SteamFragmentShader}
@@ -109,23 +111,25 @@ export function SteamShader({ position = [0, 0.6, 0], intensity = 1.0, scale = 1
           transparent
           depthWrite={false}
           blending={THREE.AdditiveBlending}
-          side={THREE.DoubleSide}
+          side={isMobile ? THREE.FrontSide : THREE.DoubleSide}
         />
       </mesh>
 
-      {/* Cross-axial billow for 3D fullness */}
-      <mesh ref={meshRef2} position={[0, 0.55, 0]} rotation={[0, Math.PI / 3, 0]}>
-        <cylinderGeometry args={[0.3, 0.12, 1.2, 24, 24, true]} />
-        <shaderMaterial
-          vertexShader={SteamVertexShader}
-          fragmentShader={SteamFragmentShader}
-          uniforms={uniforms}
-          transparent
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
+      {/* Cross-axial billow for 3D fullness (desktop only to eliminate alpha overdraw stutter on mobile) */}
+      {!isMobile && (
+        <mesh ref={meshRef2} position={[0, 0.55, 0]} rotation={[0, Math.PI / 3, 0]}>
+          <cylinderGeometry args={[0.3, 0.12, 1.2, 24, 24, true]} />
+          <shaderMaterial
+            vertexShader={SteamVertexShader}
+            fragmentShader={SteamFragmentShader}
+            uniforms={uniforms}
+            transparent
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      )}
     </group>
   );
 }

@@ -38,18 +38,34 @@ export function StorySection({ locale = "en" }: StorySectionProps) {
 
   useEffect(() => {
     let ticking = false;
+    let lastProgress = -1;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (!trackRef.current) return;
+          if (!trackRef.current) {
+            ticking = false;
+            return;
+          }
           const rect = trackRef.current.getBoundingClientRect();
           const totalScrollable = trackRef.current.clientHeight - window.innerHeight;
-          if (totalScrollable <= 0) return;
+          if (totalScrollable <= 0) {
+            ticking = false;
+            return;
+          }
 
           const currentScroll = Math.max(0, -rect.top);
-          const progress = Math.min(1, Math.max(0, currentScroll / totalScrollable));
-          setScrollProgress(progress);
+          const rawProgress = Math.min(1, Math.max(0, currentScroll / totalScrollable));
+
+          // Throttle micro-delta React state updates to prevent main-thread lockups during mobile inertial touch scrolls
+          if (
+            Math.abs(rawProgress - lastProgress) >= 0.001 ||
+            (rawProgress === 0 && lastProgress !== 0) ||
+            (rawProgress === 1 && lastProgress !== 1)
+          ) {
+            lastProgress = rawProgress;
+            setScrollProgress(rawProgress);
+          }
           ticking = false;
         });
         ticking = true;

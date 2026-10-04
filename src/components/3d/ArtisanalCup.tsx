@@ -46,8 +46,8 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
     points.push(new THREE.Vector2(0.28, 0.12));
     points.push(new THREE.Vector2(0.0, 0.10));
 
-    return new THREE.LatheGeometry(points, 64);
-  }, []);
+    return new THREE.LatheGeometry(points, isMobile ? 36 : 64);
+  }, [isMobile]);
 
   // 2. Ceramic Saucer Lathe Geometry
   const saucerGeometry = useMemo(() => {
@@ -70,8 +70,8 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
     points.push(new THREE.Vector2(0.68, 0.0));
     points.push(new THREE.Vector2(0.0, 0.02));
 
-    return new THREE.LatheGeometry(points, 64);
-  }, []);
+    return new THREE.LatheGeometry(points, isMobile ? 36 : 64);
+  }, [isMobile]);
 
   // 3. Ergonomic Ceramic Handle (Tube along 3D Catmull-Rom curve)
   const handleGeometry = useMemo(() => {
@@ -83,8 +83,8 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
       new THREE.Vector3(0.78, 0.32, 0),
       new THREE.Vector3(0.58, 0.30, 0),
     ]);
-    return new THREE.TubeGeometry(curve, 32, 0.065, 16, false);
-  }, []);
+    return new THREE.TubeGeometry(curve, isMobile ? 18 : 32, 0.065, isMobile ? 10 : 16, false);
+  }, [isMobile]);
 
   useFrame((state, delta) => {
     if (!groupRef.current || !active) return;
@@ -158,15 +158,15 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
           color="#1A120B"
           roughness={0.16}
           metalness={0.08}
-          clearcoat={1.0}
+          clearcoat={isMobile ? 0 : 1.0}
           clearcoatRoughness={0.06}
-          reflectivity={0.85}
+          reflectivity={isMobile ? 0.5 : 0.85}
         />
       </mesh>
 
       {/* Gold Rim Accent on Saucer */}
       <mesh position={[0, -0.09, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.15, 1.20, 64]} />
+        <ringGeometry args={[1.15, 1.20, isMobile ? 32 : 64]} />
         <meshStandardMaterial color="#B8975C" roughness={0.22} metalness={0.85} />
       </mesh>
 
@@ -176,20 +176,20 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
           color="#1A120B"
           roughness={0.16}
           metalness={0.08}
-          clearcoat={1.0}
+          clearcoat={isMobile ? 0 : 1.0}
           clearcoatRoughness={0.06}
-          reflectivity={0.85}
+          reflectivity={isMobile ? 0.5 : 0.85}
         />
       </mesh>
 
       {/* Inner Ceramic Porcelain Lining */}
       <mesh position={[0, 0.18, 0]}>
-        <cylinderGeometry args={[0.67, 0.46, 0.82, 48, 1, true]} />
+        <cylinderGeometry args={[0.67, 0.46, 0.82, isMobile ? 24 : 48, 1, true]} />
         <meshPhysicalMaterial
           color="#FAF5EE"
           roughness={0.25}
           metalness={0.05}
-          clearcoat={0.6}
+          clearcoat={isMobile ? 0 : 0.6}
           clearcoatRoughness={0.1}
         />
       </mesh>
@@ -200,20 +200,20 @@ export function ArtisanalCup({ progress, active }: ArtisanalCupProps) {
           color="#1A120B"
           roughness={0.16}
           metalness={0.08}
-          clearcoat={1.0}
+          clearcoat={isMobile ? 0 : 1.0}
           clearcoatRoughness={0.06}
         />
       </mesh>
 
       {/* 4. Delicate 24K Gold Rim Trim */}
       <mesh position={[0, 0.71, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.70, 0.75, 64]} />
+        <ringGeometry args={[0.70, 0.75, isMobile ? 32 : 64]} />
         <meshStandardMaterial color="#B8975C" roughness={0.2} metalness={0.88} />
       </mesh>
 
       {/* 5. Photorealistic Espresso Crema Liquid Surface */}
       <mesh ref={liquidRef} position={[0, 0.58, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[0.67, 64]} />
+        <circleGeometry args={[0.67, isMobile ? 32 : 64]} />
         <meshStandardMaterial
           map={cremaTexture}
           roughness={0.18}
