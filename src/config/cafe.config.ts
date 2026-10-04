@@ -204,17 +204,17 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
       height: 48,
     },
     colors: {
-      bgPrimary: "#0D0907",         // Deepest Obsidian Espresso
-      bgSurface: "#16100B",         // Warm Dark Roast Surface
-      bgSurfaceElevated: "#221A13", // Elevated Container Roast
-      borderSubtle: "#2C2018",      // Subtle Roast Border
-      borderMedium: "#3F2F23",      // Distinct Border Line
-      textPrimary: "#FAF6F0",       // Pure Steamed Milk Cream
-      textSecondary: "#D5C8BA",     // Warm Oat Parchment
-      textMuted: "#9E8E7E",         // Roasted Crema Grey
-      accentPrimary: "#C98A4C",     // Rich Warm Caramel
-      accentHover: "#AA7137",       // Roasted Cognac Amber
-      accentLight: "#E5B070",       // Golden Froth Crema
+      bgPrimary: "#1A120B",         // Deep Mocha Luxe Espresso
+      bgSurface: "#2B1B14",         // Warm Dark Roast Surface
+      bgSurfaceElevated: "#3D2B1F", // Elevated Card Container Roast
+      borderSubtle: "#3F2F23",      // Subtle Roast Border
+      borderMedium: "#5C3D2E",      // Distinct Border Line
+      textPrimary: "#FAF5EE",       // Steamed Latte Cream
+      textSecondary: "#F5EBD8",     // Warm Oat Parchment
+      textMuted: "#A39282",         // Roasted Crema Grey
+      accentPrimary: "#C9913A",     // Rich Warm Caramel
+      accentHover: "#DBA94F",       // Golden Caramel Amber
+      accentLight: "#B8975C",       // Antique Gold Sheen
       vegBadge: "#2E7D32",          // Fresh Farm Herb Green
       nonvegBadge: "#C62828",       // Classic Terracotta Crust
     },
@@ -294,7 +294,7 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
   },
   scene3D: {
     enabled: true,
-    scrollDurationVh: 500,
+    scrollDurationVh: 650,
     steps: [
       {
         id: "hero",
@@ -322,12 +322,12 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
       },
       {
         id: "burger",
-        titleEn: "Artisanal & Handcrafted",
-        titleHi: "कारीगरी से बना स्वादिष्ट बर्गर",
-        subtitleEn: "Butter-toasted brioche, crisp greens, melted raclette",
-        subtitleHi: "मक्खनयुक्त ब्रियोश बन, ताज़ी हरी पत्तियां और पिघला हुआ चीज़",
+        titleEn: "Artisanal Bakery & Kitchen",
+        titleHi: "कारीगरी बेकरी और रसोई",
+        subtitleEn: "Flaky golden butter croissants and handcrafted morning specialties, baked fresh daily",
+        subtitleHi: "हर सुबह ताज़ा बेक किए गए सुनहरे परतदार क्रोइसैन्ट और स्वादिष्ट व्यंजन",
         scrollProgressStart: 0.38,
-        scrollProgressEnd: 0.60,
+        scrollProgressEnd: 0.58,
         cameraPosition: [-1.8, 1.2, 3.5],
         cameraLookAt: [0, 0.2, 0],
         bgColor: "#160F0A",
@@ -336,10 +336,10 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
         id: "dessert",
         titleEn: "Decadence in Every Bite",
         titleHi: "हर निवाले में मिठास का जादू",
-        subtitleEn: "Small-batch patisserie baked fresh every single morning",
-        subtitleHi: "हर रोज़ सुबह ताज़ा बेक की जाने वाली स्वादिष्ट पेस्ट्री",
-        scrollProgressStart: 0.60,
-        scrollProgressEnd: 0.80,
+        subtitleEn: "Decadent chocolate mirror glaze, fresh berries, and small-batch daily patisserie",
+        subtitleHi: "शानदार चॉकलेट मिरर ग्लेज़, ताज़े फल और रोज़ सुबह तैयार की जाने वाली स्वादिष्ट पेस्ट्री",
+        scrollProgressStart: 0.58,
+        scrollProgressEnd: 0.76,
         cameraPosition: [0, 1.8, 3.6],
         cameraLookAt: [0, 0.3, 0],
         bgColor: "#120B07",
@@ -350,8 +350,8 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
         titleHi: "हर पल के लिए तैयार",
         subtitleEn: "From quiet morning sips to lively evening gatherings",
         subtitleHi: "शांत सुबह की पहली घूंट से लेकर शाम की महफ़िल तक",
-        scrollProgressStart: 0.80,
-        scrollProgressEnd: 0.94,
+        scrollProgressStart: 0.76,
+        scrollProgressEnd: 0.88,
         cameraPosition: [0, 2.5, 5.0],
         cameraLookAt: [0, 0.5, 0],
         bgColor: "#0D0907",
@@ -362,7 +362,7 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
         titleHi: "A2 कैफे में आपका स्वागत है",
         subtitleEn: "Pull up a chair. Your table and coffee await.",
         subtitleHi: "आइए बैठिए, आपकी मेज़ और ताज़ा कॉफ़ी तैयार है।",
-        scrollProgressStart: 0.94,
+        scrollProgressStart: 0.88,
         scrollProgressEnd: 1.0,
         cameraPosition: [0, 1.2, 3.8],
         cameraLookAt: [0, 0.4, 0],
@@ -370,10 +370,10 @@ export const cafeConfig: CafeConfig = CafeConfigSchema.parse({
       },
     ],
     models: {
-      cupPath: "/models/cup.glb",
-      beansPath: "/models/bean.glb",
-      burgerPath: "/models/burger.glb",
-      dessertPath: "/models/dessert.glb",
+      cupPath: "/textures/crema.png",
+      beansPath: "/textures/steam-noise.png",
+      burgerPath: "/models/croissant/croissant.gltf",
+      dessertPath: "/models/cake/strawberry_chocolate_cake.gltf",
     },
   },
   seo: {

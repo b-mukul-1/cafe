@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Dynamic Cafe Color Variables (fed from cafe.config.ts) */
-  --bg-primary: #0D0907;
-  --bg-surface: #16100B;
-  --bg-surface-elevated: #221A13;
-  --border-subtle: #2C2018;
-  --border-medium: #3F2F23;
-  --text-primary: #FAF6F0;
-  --text-secondary: #D5C8BA;
-  --text-muted: #9E8E7E;
-  --accent-primary: #C98A4C;
-  --accent-hover: #AA7137;
-  --accent-light: #E5B070;
+  /* Dynamic Cafe Color Variables (Mocha Luxe 2025 Luxury Palette) */
+  --bg-primary: #1A120B;
+  --bg-surface: #2B1B14;
+  --bg-surface-elevated: #3D2B1F;
+  --border-subtle: #3F2F23;
+  --border-medium: #5C3D2E;
+  --text-primary: #FAF5EE;
+  --text-secondary: #F5EBD8;
+  --text-muted: #A39282;
+  --accent-primary: #C9913A;
+  --accent-hover: #DBA94F;
+  --accent-light: #B8975C;
+  --teal-accent: #2D6A6A;
+  --gold-sheen: #B8975C;
   --veg-badge: #2E7D32;
   --nonveg-badge: #C62828;
 
@@ -34,6 +36,8 @@
   --color-cafe-caramel: var(--accent-primary);
   --color-cafe-caramel-hover: var(--accent-hover);
   --color-cafe-gold: var(--accent-light);
+  --color-cafe-teal: var(--teal-accent);
+  --color-cafe-sheen: var(--gold-sheen);
   --color-cafe-veg: var(--veg-badge);
   --color-cafe-nonveg: var(--nonveg-badge);
 
