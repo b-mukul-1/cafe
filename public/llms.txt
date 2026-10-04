@@ -1,0 +1,42 @@
+# A2 Cafe
+> Artisanal Coffee & Handcrafted Culinary Moments
+
+## Overview
+A premier artisanal cafe blending specialty pour-overs, handcrafted brioche burgers, and small-batch patisserie in an intimate, modern espresso lounge.
+Established: 2024
+Cuisine & Specialties: Artisanal Coffee, Gourmet Burgers, Continental, Specialty Desserts, Breakfast
+Price Range: ₹₹ (Moderate) (₹300 – ₹700 per person)
+
+## Location & Contact
+- Street Address: [[A2_FULL_ADDRESS]]
+- Locality / City: [[A2_CITY]], [[A2_STATE]] [[A2_POSTAL_CODE]]
+- Geographic Coordinates: Latitude 28.6139, Longitude 77.209
+- Phone: [[A2_PHONE_FORMATTED]]
+- Email: [[A2_EMAIL]]
+- Transit & Access: Located 5 minutes walking distance from [[A2_TRANSIT_STATION]].
+- Parking: Valet parking and dedicated cafe parking spots available right out front.
+
+## Operating Hours
+- Mon – Fri: 8:00 AM – 11:00 PM
+- Sat – Sun: 8:00 AM – 11:30 PM
+
+## Menu & Offerings
+Total Curated Menu Items: 13
+Categories:
+- Specialty Coffee & Brews: Ethically sourced, single-origin Arabica beans roasted in micro-batches and poured with precision.
+- Artisanal Brioche Burgers: House-baked French brioche buns, melted artisanal cheeses, crisp organic farm greens, and secret sauces.
+- Small-Batch Patisserie: Handcrafted daily by our pastry chefs using pure Normandy butter, Belgian single-estate chocolates, and seasonal fruits.
+- All-Day Artisanal Breakfast: Wholesome sourdough toasts, organic farm eggs, açai superfood bowls, and cold-pressed elixirs.
+
+Dietary Standards:
+- Over 80% vegetarian menu items with dedicated separate cookware
+- Plant-based milks available for all coffee beverages (oat, almond, soy)
+- Gluten-free, nut-free, and vegan dietary flags indicated on every menu item
+
+## Key URLs
+- Home: https://a2cafe.example.com/
+- Menu: https://a2cafe.example.com/menu/
+- Our Story: https://a2cafe.example.com/about/
+- Visit & Directions: https://a2cafe.example.com/visit/
+- FAQ: https://a2cafe.example.com/faq/
+- Hindi Version: https://a2cafe.example.com/hi/

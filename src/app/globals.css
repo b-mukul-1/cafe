@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dynamic Cafe Color Variables (fed from cafe.config.ts) */
+  --bg-primary: #0D0907;
+  --bg-surface: #16100B;
+  --bg-surface-elevated: #221A13;
+  --border-subtle: #2C2018;
+  --border-medium: #3F2F23;
+  --text-primary: #FAF6F0;
+  --text-secondary: #D5C8BA;
+  --text-muted: #9E8E7E;
+  --accent-primary: #C98A4C;
+  --accent-hover: #AA7137;
+  --accent-light: #E5B070;
+  --veg-badge: #2E7D32;
+  --nonveg-badge: #C62828;
+
+  /* Typography Fallbacks */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-devanagari: "Noto Serif Devanagari", Georgia, serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cafe-bg: var(--bg-primary);
+  --color-cafe-surface: var(--bg-surface);
+  --color-cafe-surface-elevated: var(--bg-surface-elevated);
+  --color-cafe-border: var(--border-subtle);
+  --color-cafe-border-medium: var(--border-medium);
+  --color-cafe-cream: var(--text-primary);
+  --color-cafe-parchment: var(--text-secondary);
+  --color-cafe-muted: var(--text-muted);
+  --color-cafe-caramel: var(--accent-primary);
+  --color-cafe-caramel-hover: var(--accent-hover);
+  --color-cafe-gold: var(--accent-light);
+  --color-cafe-veg: var(--veg-badge);
+  --color-cafe-nonveg: var(--nonveg-badge);
+
+  --font-serif: var(--font-playfair), var(--font-display);
+  --font-sans: var(--font-jakarta), var(--font-body);
+  --font-hindi: var(--font-noto-hindi), var(--font-devanagari);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base resets & smooth rendering */
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scrolling integration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Accessible focus styling */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Accessible Skip Link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background-color: var(--accent-primary);
+  color: #0D0907;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  z-index: 9999;
+  transition: top 0.2s ease-in-out;
+  border-radius: 0 0 6px 6px;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Custom artisanal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0907;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2C2018;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C98A4C;
+}
+
+/* Seamless Poster to 3D Canvas Cross-Fade: zero layout shift, zero flash */
+.story-stage-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.story-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.story-poster.faded-out {
+  opacity: 0;
+}
+
+.story-canvas-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-canvas-layer.canvas-active {
+  opacity: 1;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

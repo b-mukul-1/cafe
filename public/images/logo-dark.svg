@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="goldGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5B070"/>
+      <stop offset="100%" stop-color="#C98A4C"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 14)">
+    <circle cx="26" cy="26" r="24" fill="none" stroke="url(#goldGradDark)" stroke-width="2.5"/>
+    <path d="M16 22 C16 32, 22 36, 26 36 C30 36, 36 32, 36 22 Z" fill="url(#goldGradDark)"/>
+    <path d="M36 24 C40 24, 42 27, 41 30 C40 33, 36 33, 35 32" fill="none" stroke="url(#goldGradDark)" stroke-width="2"/>
+    <path d="M22 14 Q24 10 26 14 Q28 18 30 14" fill="none" stroke="#16100B" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <text x="76" y="44" font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="#16100B" letter-spacing="4">A2 CAFE</text>
+  <text x="78" y="62" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="600" fill="#C98A4C" letter-spacing="3">ROASTERY &amp; CULINARY LOUNGE</text>
+</svg>
