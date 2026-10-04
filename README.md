@@ -101,3 +101,4 @@ When you are ready to introduce the live ordering system or administrative dashb
 2. Toggle `output: 'export'` off (or run with `NEXT_OUTPUT_MODE=standalone`).
 3. Connect your database/auth in `src/app/(dashboard)/dashboard/` and `src/app/order/`.
 4. Configure your backend endpoint in `process.env.NEXT_PUBLIC_API_URL` (connected via `src/lib/api/client.ts`).
+# cafe
